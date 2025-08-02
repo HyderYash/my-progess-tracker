@@ -94,29 +94,10 @@ self.addEventListener('push', (event) => {
     console.log('Push event received:', event)
 
     let notificationData = {
-        title: 'Progress Tracker',
         body: 'Time to fill your daily tracker!',
         icon: '/icon-192x192.png',
-        badge: '/icon-192x192.png',
         tag: 'daily-reminder',
-        requireInteraction: true,
-        vibrate: [200, 100, 200, 100, 200],
-        data: {
-            url: '/',
-            timestamp: Date.now()
-        },
-        actions: [
-            {
-                action: 'open',
-                title: 'Open App',
-                icon: '/icon-192x192.png'
-            },
-            {
-                action: 'snooze',
-                title: 'Remind Later',
-                icon: '/icon-192x192.png'
-            }
-        ]
+        requireInteraction: true
     }
 
     // If we have data from the push, use it
@@ -130,7 +111,7 @@ self.addEventListener('push', (event) => {
     }
 
     event.waitUntil(
-        self.registration.showNotification(notificationData.title, notificationData)
+        self.registration.showNotification('Progress Tracker', notificationData)
     )
 })
 
@@ -162,17 +143,10 @@ self.addEventListener('notificationclick', (event) => {
         event.waitUntil(
             setTimeout(() => {
                 self.registration.showNotification('Progress Tracker', {
-                    title: 'Progress Tracker',
                     body: 'Don\'t forget to track your progress!',
                     icon: '/icon-192x192.png',
-                    badge: '/icon-192x192.png',
                     tag: 'daily-reminder',
-                    requireInteraction: true,
-                    vibrate: [200, 100, 200],
-                    data: {
-                        url: '/',
-                        timestamp: Date.now()
-                    }
+                    requireInteraction: true
                 })
             }, 30 * 60 * 1000) // 30 minutes
         )
