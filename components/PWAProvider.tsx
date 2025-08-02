@@ -98,35 +98,15 @@ export function PWAProvider() {
             if ('serviceWorker' in navigator && navigator.serviceWorker.ready) {
                 const registration = await navigator.serviceWorker.ready
                 await registration.showNotification('Progress Tracker', {
-                    title: 'Progress Tracker',
                     body: 'This is a test notification! 🎉',
                     icon: '/icon-192x192.png',
-                    badge: '/icon-192x192.png',
                     tag: 'test-notification',
-                    requireInteraction: true,
-                    vibrate: [200, 100, 200, 100, 200],
-                    data: {
-                        url: '/',
-                        timestamp: Date.now()
-                    },
-                    actions: [
-                        {
-                            action: 'open',
-                            title: 'Open App',
-                            icon: '/icon-192x192.png'
-                        },
-                        {
-                            action: 'close',
-                            title: 'Close',
-                            icon: '/icon-192x192.png'
-                        }
-                    ]
+                    requireInteraction: true
                 })
                 console.log('Test notification sent')
             } else {
                 // Fallback to regular notification
                 new Notification('Progress Tracker', {
-                    title: 'Progress Tracker',
                     body: 'This is a test notification! 🎉',
                     icon: '/icon-192x192.png'
                 })
